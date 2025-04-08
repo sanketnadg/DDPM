@@ -1,7 +1,7 @@
 type: original
 unet:
   dim: 64
-  image_size: 32
+  image_size: 320
   dim_multiply:
   - 1
   - 2
@@ -14,15 +14,15 @@ unet:
 ddim:
   0:
     ddim_sampling_steps: 20
-    sample_every: 10000
+    sample_every: 1000
     calculate_fid: true
-    num_fid_sample: 30000
+    num_fid_sample: 10000
     save: true
 trainer:
-  dataset: cifar10
-  batch_size: 128
+  dataset: color
+  batch_size: 4
   lr: 0.0002
-  total_step: 600000
+  total_step: 20000
   save_and_sample_every: 2500
   num_samples: 64
   fid_estimate_batch_size: 128

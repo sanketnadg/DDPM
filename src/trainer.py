@@ -15,7 +15,7 @@ from tqdm import tqdm
 import datetime
 from termcolor import colored
 from .utils import *
-
+import copy
 
 def cycle_with_label(dl):
     while True:
@@ -75,6 +75,9 @@ class Trainer:
                 exp_name = os.path.basename(os.path.dirname(dataset))
         self.exp_name = exp_name
         self.diffusion_model = diffusion_model
+        self.ema_model = copy.deepcopy(diffusion_model)
+        for param in self.ema_model.parameters():
+            param.require_grad = False
         self.ddim_samplers = ddim_samplers
         self.batch_size = batch_size
         self.num_samples = num_samples
@@ -117,7 +120,7 @@ class Trainer:
                                 num_workers=num_workers, pin_memory=True)
         self.dataLoader = cycle(dataLoader) if os.path.isdir(dataset) else cycle_with_label(dataLoader)
         self.optimizer = Adam(self.diffusion_model.parameters(), lr=lr)
-
+        self.update_ema()
         # DDIM sampler setting
         self.ddim_sampling_schedule = list()
         for idx, sampler in enumerate(self.ddim_samplers):
@@ -193,7 +196,15 @@ class Trainer:
                 print(colored(msg, 'red'))
             del dataLoader_fid
             del dataSet_fid
-
+            self.scheduler = None
+    def update_ema(self, decay=0.9999):
+        """
+        Update EMA model with decay rate
+        :param decay: decay rate for EMA model
+        :return:
+        """
+        for ema_param, param in zip(self.diffusion_model.parameters(), self.ema_model.parameters()):
+            ema_param.data = ema_param.data * decay + (1 - decay)
     def train(self):
         # Tensorboard
         if self.tensorboard:
@@ -220,7 +231,8 @@ class Trainer:
             loss.backward()
             nn.utils.clip_grad_norm_(self.diffusion_model.parameters(), self.max_grad_norm)
             self.optimizer.step()
-
+            if self.scheduler is not None:
+              self.scheduler.step()
             vis_fid = cur_fid if isinstance(cur_fid, str) else '{:.04f}'.format(cur_fid)
             stepTQDM.set_postfix({'loss': '{:.04f}'.format(loss.item()), 'FID': vis_fid, 'step':self.global_step})
 
@@ -234,7 +246,11 @@ class Trainer:
                     for i, j in zip([True, False], ['clip', 'no_clip']):
                         if self.clip not in [i, 'both']:
                             continue
+                        original_model = self.diffusion_model
+                        self.diffusion_model = self.ema_model
+                        self.diffusion_model.eval()
                         imgs = list(map(lambda n: self.diffusion_model.sample(batch_size=n, clip=i), batches))
+                        self.diffusion_model = original_model
                         imgs = torch.cat(imgs, dim=0)
                         save_image(imgs, nrow=self.nrow,
                                    fp=os.path.join(self.ddpm_result_folder, j, f'sample_{cur_step}.png'))
@@ -310,7 +326,7 @@ class Trainer:
         for sampler in self.ddim_samplers:
             data[sampler.sampler_name] = sampler.state_dict()
         torch.save(data, os.path.join(self.result_folder, 'model_{}.pt'.format(name)))
-
+    
     def load(self, path, tensorboard_path=None, no_prev_ddim_setting=False):
         if not os.path.exists(path):
             print(make_notification('ERROR', color='red', boundary='*'))
@@ -337,3 +353,22 @@ class Trainer:
         if tensorboard_path is not None:
             self.tensorboard_name = data['tensorboard']
         print(colored('Successfully loaded checkpoint!\n', 'green'))
+        if self.writer is not None:
+            self.writer = SummaryWriter(os.path.join('./tensorboard', self.tensorboard_name))
+        if tensorboard_path is not None:   
+            self.writer = SummaryWriter(tensorboard_path)
+        if self.tensorboard:    
+            self.writer = SummaryWriter(os.path.join('./tensorboard', self.tensorboard_name))
+        if self.writer is not None: 
+            self.writer.add_scalar('Loss', 0, self.global_step)
+            self.writer.add_scalar('FID', 0, self.global_step)
+            self.writer.add_text('Checkpoint', path, self.global_step)
+            self.writer.add_text('Tensorboard', self.tensorboard_name, self.global_step)
+            self.writer.add_text('FID Score Log', str(self.fid_score_log), self.global_step)
+            self.writer.add_text('Checkpoint', path, self.global_step)
+            self.writer.add_text('Tensorboard', self.tensorboard_name, self.global_step)
+            self.writer.add_text('FID Score Log', str(self.fid_score_log), self.global_step)
+        print(make_notification('Loading Checkpoint', color='green'))
+        print(colored('Checkpoint loaded successfully!', 'green'))
+        print(colored('You can continue training from this checkpoint!', 'green'))
+        print('\n')
