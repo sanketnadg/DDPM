@@ -1,23 +1,25 @@
 type: original
 unet:
-  dim: 64
-  image_size: 320
+  dim: 64            # try 32 if still OOM
+  image_size: 128    # drop from 320 to 128
   dim_multiply:
-  - 1
-  - 2
-  - 2
-  - 2
+    - 1
+    - 2
+    - 2
+    - 2
   attn_resolutions:
-  - 16
+    - 16
   dropout: 0.1
   num_res_blocks: 2
+
 ddim:
   0:
     ddim_sampling_steps: 20
     sample_every: 1000
     calculate_fid: true
-    num_fid_sample: 10000
+    num_fid_sample: 5000   # faster, less memory
     save: true
+
 trainer:
   dataset: color
   batch_size: 4
@@ -25,5 +27,5 @@ trainer:
   total_step: 20000
   save_and_sample_every: 2500
   num_samples: 64
-  fid_estimate_batch_size: 128
+  fid_estimate_batch_size: 32   # key change
   clip: true
