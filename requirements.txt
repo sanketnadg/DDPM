@@ -1,5 +1,5 @@
 einops
-pillow==9.5.0
+pillow
 tensorboard
 tqdm
 termcolor
