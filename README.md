@@ -86,8 +86,10 @@ Expected Drunkards Odometry Dataset
 <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/samples_datasets.jpg" height="600" width="800">
 
 The drunkards odometry flow is very complex, but the main idea behind it is to analyze constantly deforming scenes in all direction to create plausible navigation
+<br><br>
 <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/Overview_drunk2.jpg" height="600" width="800">
 
 
 Results from training on a small color dataset using DDPM with many computational limitations
+<br><br>
 <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/drunkardresult.png" height="600" width="800">
