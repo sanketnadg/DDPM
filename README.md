@@ -10,14 +10,24 @@ To reimplement exactly as seen in the results for the experimentation do the fol
 
 
 Copy over any of the color.zip files into any directory in google drive
-
+```commandline
 from google.colab import drive
+```
+```commandline
 drive.mount('/content/drive')
+```
+```commandline
 !git clone https://github.com/sanketnadg/DDPM.git
+```
+```commandline
 !unzip '<location_of_color_compressed_folder>/color'.zip -d '/content/'
+```
+```commandline
 !pip install -r requirements.txt
+```
+```commandline
 python '/content/DDPM/train.py' -c '/content/DDPM/config/drunkards.yaml' (this will begin the training process)
-
+```
 
 
 
