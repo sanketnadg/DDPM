@@ -8,7 +8,7 @@ Specifically for this project I used the 320 dataset, scene 0 and level 0 "Color
 
 To reimplement exactly as seen in the results for the experimentation do the following in a Google Colab notebook :
 
-```
+
 Copy over any of the color.zip files into any directory in google drive
 Tested for python 3.8.17 with torch 1.12.1+cu113 and torchvision 0.13.1+cu113.
 - from google.colab import drive
@@ -17,7 +17,7 @@ Tested for python 3.8.17 with torch 1.12.1+cu113 and torchvision 0.13.1+cu113.
 - !unzip '<location_of_color_compressed_folder>/color'.zip -d '/content/'
 - !pip install -r requirements.txt
 - python '/content/DDPM/train.py' -c '/content/DDPM/config/drunkards.yaml' (this will begin the training process)
-```
+
 
 Results of this codebase on preexisting datasets
 
@@ -31,32 +31,38 @@ DDPM objective: minimize E[ || ε - ε_θ(x_t, t) ||^2 ]
 
 What the diffusion process actually looks like :
 
-<img src="./images_README/cifar10_128_ex1.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
-<img src="./images_README/cifar10_128_ex2.gif" height="350" width="350">
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/cifar10_128_ex1.png" height="350" width="350">
+  <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/cifar10_128_ex2.gif" height="350" width="350">
+</div>
+
 <br><br>
-<img src="./images_README/celeba_hq_ex1.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
-<img src="./images_README/celeba_hq_ex1.gif" height="350" width="350">
+
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex1.png" height="350" width="350">
+  <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex1.gif" height="350" width="350">
+</div>
 
 - cifar10_64dim
 
-<img src="./images_README/cifar10_64_ex1.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
-<img src="./images_README/cifar10_64_ex2.gif" height="350" width="350">
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/cifar10_64_ex1.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/cifar10_64_ex2.gif" height="350" width="350">
 
 - cifar10_128dim
 
-<img src="./images_README/cifar10_128_ex3.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
-<img src="./images_README/cifar10_128_ex4.gif" height="350" width="350">
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/cifar10_128_ex3.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/cifar10_128_ex4.gif" height="350" width="350">
 
 - celeba_hq_256
 
-<img src="./images_README/celeba_hq_ex2.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
-<img src="./images_README/celeba_hq_ex2.gif" height="350" width="350">
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex2.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex2.gif" height="350" width="350">
 <br><br>
-<img src="./images_README/celeba_hq_ex3.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
-<img src="./images_README/celeba_hq_ex3.gif" height="350" width="350">
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex3.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex3.gif" height="350" width="350">
 <br><br>
-<img src="./images_README/celeba_hq_ex4.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
-<img src="./images_README/celeba_hq_ex4.gif" height="350" width="350">
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex4.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/celeba_hq_ex4.gif" height="350" width="350">
 
 
 ```
@@ -75,3 +81,7 @@ What the diffusion process actually looks like :
             - 29999.jpg
     
 ```
+
+<br><br>
+<img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images_README/samples_datasets.jpg" height="600" width="600">
+
