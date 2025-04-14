@@ -27,6 +27,8 @@ Results of this codebase on preexisting datasets
 |  Cifar10  |   [cifar10_128dim.pt](https://drive.google.com/file/d/1NtysETxHPinns6JabjawyWTnkjJKT34M/view?usp=drive_link)   |  8.31   |
 | CelebA-HQ |   [celeba_hq_256.pt](https://drive.google.com/file/d/1zzZbkNkMYCFKmWKW5Sh2JsrUsNrWyDCs/view?usp=drive_link)    |  11.97  |
 
+DDPM objective: minimize E[ || ε - ε_θ(x_t, t) ||^2 ]
+
 What the diffusion process actually looks like :
 
 <img src="./images_README/cifar10_128_ex1.png" height="350" width="350"> &nbsp; &nbsp; &nbsp;
