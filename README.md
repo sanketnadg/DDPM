@@ -81,7 +81,13 @@ What the diffusion process actually looks like :
             - 29999.jpg
     
 ```
-
+Expected Drunkards Odometry Dataset
 <br><br>
-<img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images_README/samples_datasets.jpg" height="600" width="600">
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/samples_datasets.jpg" height="600" width="800">
 
+The drunkards odometry flow is very complex, but the main idea behind it is to analyze constantly deforming scenes in all direction to create plausible navigation
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/Overview_drunk2.jpg" height="600" width="800">
+
+
+Results from training on a small color dataset using DDPM with many computational limitations
+<img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/drunkardresult.png" height="600" width="800">
