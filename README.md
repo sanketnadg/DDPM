@@ -8,27 +8,15 @@ Specifically for this project I used the 320 dataset, scene 0 and level 0 "Color
 
 To reimplement exactly as seen in the results for the experimentation do the following in a Google Colab notebook :
 
-
+```
 Copy over any of the color.zip files into any directory in google drive
-```commandline
-from google.colab import drive
+- from google.colab import drive
+- drive.mount('/content/drive')
+- !git clone https://github.com/sanketnadg/DDPM.git
+- !unzip '<location_of_color_compressed_folder>/color'.zip -d '/content/'
+- !pip install -r requirements.txt
+- python '/content/DDPM/train.py' -c '/content/DDPM/config/drunkards.yaml' (this will begin the training process)
 ```
-```commandline
-drive.mount('/content/drive')
-```
-```commandline
-!git clone https://github.com/sanketnadg/DDPM.git
-```
-```commandline
-!unzip '<location_of_color_compressed_folder>/color'.zip -d '/content/'
-```
-```commandline
-!pip install -r requirements.txt
-```
-```commandline
-python '/content/DDPM/train.py' -c '/content/DDPM/config/drunkards.yaml' (this will begin the training process)
-```
-
 
 
 
