@@ -93,3 +93,6 @@ The drunkards odometry flow is very complex, but the main idea behind it is to a
 Results from training on a small color dataset using DDPM with many computational limitations
 <br><br>
 <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/drunkardresult.png" height="600" width="800">
+
+
+Here is the link to my presentation for this : https://drive.google.com/file/d/1XuWaglvz6RuRboCfKwrPK70ITXy1nLmx/view?usp=drive_link
