@@ -1,3 +1,27 @@
+The following Readme is an adapted version of the DDPM & DDIM PyTorch re-implementation shown below
+This project also uses an external, custom dataset that found in ([Drunkard's Odometry](https://drive.google.com/drive/folders/1AZHUKMbe7bR1xwRmAAZ0AHgcEqRnNjms)
+
+Reimplementation is done using the below project to work with a small portion of the Drunkards Odometry; this is using google colab restrictions. 
+The requirements.txt is up to date
+
+Specifically for this project I used the 320 dataset, scene 0 and level 0 "Color" dataset.
+
+To reimplement exactly as seen in the results for the experimentation do the following in a Google Colab notebook :
+
+
+Copy over any of the color.zip files into any directory in google drive
+
+from google.colab import drive
+drive.mount('/content/drive')
+!git clone https://github.com/sanketnadg/DDPM.git
+!unzip '<location_of_color_compressed_folder>/color'.zip -d '/content/'
+!pip install -r requirements.txt
+python '/content/DDPM/train.py' -c '/content/DDPM/config/drunkards.yaml' (this will begin the training process)
+
+
+
+
+
 # DDPM & DDIM PyTorch
 ### DDPM & DDIM re-implementation with various functionality
 
