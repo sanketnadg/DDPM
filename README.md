@@ -95,4 +95,4 @@ Results from training on a small color dataset using DDPM with many computationa
 <img src="https://raw.githubusercontent.com/sanketnadg/DDPM/master/images_README/drunkardresult.png" height="600" width="800">
 
 
-Here is the link to my presentation for this : https://drive.google.com/file/d/1XuWaglvz6RuRboCfKwrPK70ITXy1nLmx/view?usp=drive_link
+Here is the link to my presentation for this : [https://drive.google.com/file/d/1XuWaglvz6RuRboCfKwrPK70ITXy1nLmx/view?usp=drive_link](https://drive.google.com/file/d/1pGT5mvfvbcbD6sca6Z8OvUwfBIIMGlzz/view?usp=drive_link)
